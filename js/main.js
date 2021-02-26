@@ -22,11 +22,16 @@
         isDone: true
       }]
     },
+    watch: {
+      todos: {
+        handler: function(){
+          localStorage.setItem('todos', JSON.stringify(this.todos));
+          // alert('Data saved!');
+        },
+        deep: true
+      }
+    },
     methods: {
-      // addItem: function(e){
-      //   // e.preventDefault();
-      //   this.todos.push(this.newItem);
-      // }
       addItem: function(){
         var item = {
           title: this.newItem,
