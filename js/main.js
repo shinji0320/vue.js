@@ -61,15 +61,22 @@
   });
 
   var likeComponent =Vue.extend({
+    props: {
+      message: {
+        type: String,
+        default: 'like'
+      }
+    },
     data: function(){
       return{
         count: 0
       }
     },
-    template: '<button @click="countUp">Like {{ count }}</button>',
+    template: '<button @click="countUp">{{ message }} {{ count }}</button>',
     methods: {
       countUp: function(){
         this.count++;
+        this.$emit('increment');
       }
     }
   });
@@ -77,6 +84,14 @@
     el: '#app3',
     components: {
       'like-component': likeComponent
+    },
+    data: {
+      total: 0
+    },
+    methods: {
+      incrementTotal: function(){
+        this.total++;
+      }
     }
   });
 })();
